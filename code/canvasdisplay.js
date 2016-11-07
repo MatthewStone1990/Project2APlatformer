@@ -62,13 +62,13 @@ CanvasDisplay.prototype.clearDisplay = function() {
   else if (this.level.status == "lost")
     this.cx.fillStyle = "rgb(44, 136, 214)";
   else
-    this.cx.fillStyle = "rgb(52, 166, 251)";
+    this.cx.fillStyle = "rgb(32, 98, 204)";
   this.cx.fillRect(0, 0,
                    this.canvas.width, this.canvas.height);
 };
 
 var otherSprites = document.createElement("img");
-otherSprites.src = "img/sprites.png";
+otherSprites.src = "img/plates.png";
 
 CanvasDisplay.prototype.drawBackground = function() {
   var view = this.viewport;
@@ -92,7 +92,7 @@ CanvasDisplay.prototype.drawBackground = function() {
 };
 
 var playerSprites = document.createElement("img");
-playerSprites.src = "img/player.png";
+playerSprites.src = "img/character.png";
 var playerXOverlap = 4;
 
 CanvasDisplay.prototype.drawPlayer = function(x, y, width,
