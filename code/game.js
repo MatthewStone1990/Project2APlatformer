@@ -4,8 +4,8 @@ var actorChars = {
   "o": Coin, // A coin will wobble up and down
   "=": Lava, "|": Lava, "v": Lava  
   //uncomment to add both.
-  //"+": Double
-  //"_": Ice, "I": Ice //slippery floor when on ice object
+  "+": Double
+  "_": Ice, "I": Ice //slippery floor when on ice object
 };
 
 function Level(plan) {
@@ -42,8 +42,8 @@ function Level(plan) {
       else if (ch == "!")
         fieldType = "lava";
 	  	//uncomment to add
-	  /*else if (ch == "*")
-		fieldType = "ice";*/
+	  else if (ch == "*")
+		fieldType = "ice";
 
 
       // "Push" the fieldType, which is a string, onto the gridLine array (at the end).
@@ -96,14 +96,14 @@ function Coin(pos) {
 }
 Coin.prototype.type = "coin";
 
-//uncomment to make it work.
-/*function Double(pos) {
+
+function Double(pos) {
   this.basePos = this.pos = pos.plus(new Vector(0.4, 0.3));
   this.size = new Vector(0.6, 0.6);
   // Make it go back and forth in a sine wave.
   this.wobble = Math.random() * Math.PI * 3.5;
 }
-Double.prototype.type = "double";*/
+Double.prototype.type = "double";
 
 // Lava is initialized based on the character, but otherwise has a
 // size and position
@@ -124,8 +124,8 @@ function Lava(pos, ch) {
 }
 Lava.prototype.type = "lava";
 
-//Uncomment to add funct!
-/*function Ice(pos, ch) {
+
+function Ice(pos, ch) {
   this.pos = pos;
   this.size = new Vector(1, 1);
   if (ch == "_") {
@@ -136,7 +136,7 @@ Lava.prototype.type = "lava";
 } else if (ch == "I")
 	this.size = new Vector(0, 2);
 }
-Ice.prototype.type = "ice";*/
+Ice.prototype.type = "ice";
 
 // Helper function to easily create an element of a type provided 
 function elt(name, className) {
@@ -313,8 +313,8 @@ Lava.prototype.act = function(step, level) {
     this.speed = this.speed.times(-1);
 };
 
-//uncomment to add
-/*Ice.prototype.act = function(step, level) {
+
+Ice.prototype.act = function(step, level) {
   var newPos = this.pos.plus(this.speed.times(step));
   if (!level.obstacleAt(newPos, this.size))
     this.pos = newPos;
@@ -322,7 +322,7 @@ Lava.prototype.act = function(step, level) {
     this.pos = this.repeatPos;
   else
     this.speed = this.speed.times(1);
-};*/
+};
 
 var maxStep = 0.05;
 
@@ -422,10 +422,10 @@ Level.prototype.playerTouched = function(type, actor) {
       this.finishDelay = 1;
     }
   }
-  //uncomment to make code work.
-  /*if (type == "ice" && this.status == null) {
+
+  if (type == "ice" && this.status == null) {
 	  this.speed = this.speed.times(-1);
-  }*/
+  }
 };
 
 // Arrow key codes for readibility
