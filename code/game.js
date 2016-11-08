@@ -4,8 +4,8 @@ var actorChars = {
   "o": Coin, // A coin will wobble up and down
   "=": Lava, "|": Lava, "v": Lava  
   //uncomment to add both.
-  "+": Double
-  "_": Ice, "I": Ice //slippery floor when on ice object
+  "+": Double,
+  "_": Ice  "I": Ice //slippery floor when on ice object
 };
 
 function Level(plan) {
@@ -334,7 +334,7 @@ Coin.prototype.act = function(step) {
   this.pos = this.basePos.plus(new Vector(0, wobblePos));
 };
 
-/*var maxStep = 0.05;
+var maxStep = 0.05;
 
 var wobbleSpeed = 10, wobbleDist = 0.06;
 
@@ -342,7 +342,7 @@ Double.prototype.act = function(step) {
   this.wobble += step * wobbleSpeed;
   var wobblePos = Math.sin(this.wobble) * wobbleDist;
   this.pos = this.basePos.plus(new Vector(0, wobblePos));
-};*/
+};
 
 var maxStep = 0.05;
 
