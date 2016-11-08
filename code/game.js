@@ -424,7 +424,7 @@ Level.prototype.playerTouched = function(type, actor) {
   }
 
   if (type == "ice" && this.status == null) {
-	  this.speed = this.speed.times(1);
+	  this.speed = this.speed.times(2);
   }
 };
 
