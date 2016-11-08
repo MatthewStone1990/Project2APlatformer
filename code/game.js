@@ -2,8 +2,10 @@
 var actorChars = {
   "@": Player,
   "o": Coin, // A coin will wobble up and down
-  "=": Lava, "|": Lava, "v": Lava
+  "=": Lava, "|": Lava, "v": Lava  
+  //uncomment to add both.
   //"+": Double
+  //"_": Ice, "I": Ice //slippery floor when on ice object
 };
 
 function Level(plan) {
@@ -39,6 +41,10 @@ function Level(plan) {
       // Because there is a third case (space ' '), use an "else if" instead of "else"
       else if (ch == "!")
         fieldType = "lava";
+	  	//uncomment to add
+	  /*else if (ch == "*")
+		fieldType = "ice";*/
+
 
       // "Push" the fieldType, which is a string, onto the gridLine array (at the end).
       gridLine.push(fieldType);
@@ -108,6 +114,20 @@ function Lava(pos, ch) {
   }
 }
 Lava.prototype.type = "lava";
+
+//Uncomment to add funct!
+/*function Ice(pos, ch) {
+  this.pos = pos;
+  this.size = new Vector(1, 1);
+  if (ch == "_") {
+	//horizontal ice, doesn't move.  
+	this.size = new Vector(2, 0);
+	
+	//vertical ice, doesn't move.
+} else if (ch == "I")
+	this.size = new Vector(0, 2);
+}
+Ice.prototype.type = "ice";*/
 
 // Helper function to easily create an element of a type provided 
 function elt(name, className) {
@@ -284,10 +304,20 @@ Lava.prototype.act = function(step, level) {
     this.speed = this.speed.times(-1);
 };
 
+//uncomment to add
+/*Ice.prototype.act = function(step, level) {
+  var newPos = this.pos.plus(this.speed.times(step));
+  if (!level.obstacleAt(newPos, this.size))
+    this.pos = newPos;
+  else if (this.repeatPos)
+    this.pos = this.repeatPos;
+  else
+    this.speed = this.speed.times(1);
+};*/
 
 var maxStep = 0.05;
 
-var wobbleSpeed = 8, wobbleDist = 0.07;
+var wobbleSpeed = 10, wobbleDist = 0.06;
 
 Coin.prototype.act = function(step) {
   this.wobble += step * wobbleSpeed;
@@ -297,7 +327,7 @@ Coin.prototype.act = function(step) {
 
 var maxStep = 0.05;
 
-var wobbleSpeed = 8, wobbleDist = 0.07;
+var wobbleSpeed = 10, wobbleDist = 0.06;
 
 Coin.prototype.act = function(step) {
   this.wobble += step * wobbleSpeed;
