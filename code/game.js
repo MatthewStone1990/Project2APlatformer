@@ -96,6 +96,15 @@ function Coin(pos) {
 }
 Coin.prototype.type = "coin";
 
+//uncomment to make it work.
+/*function Double(pos) {
+  this.basePos = this.pos = pos.plus(new Vector(0.4, 0.3));
+  this.size = new Vector(0.6, 0.6);
+  // Make it go back and forth in a sine wave.
+  this.wobble = Math.random() * Math.PI * 3.5;
+}
+Double.prototype.type = "double";*/
+
 // Lava is initialized based on the character, but otherwise has a
 // size and position
 function Lava(pos, ch) {
@@ -325,15 +334,15 @@ Coin.prototype.act = function(step) {
   this.pos = this.basePos.plus(new Vector(0, wobblePos));
 };
 
-var maxStep = 0.05;
+/*var maxStep = 0.05;
 
 var wobbleSpeed = 10, wobbleDist = 0.06;
 
-Coin.prototype.act = function(step) {
+Double.prototype.act = function(step) {
   this.wobble += step * wobbleSpeed;
   var wobblePos = Math.sin(this.wobble) * wobbleDist;
   this.pos = this.basePos.plus(new Vector(0, wobblePos));
-};
+};*/
 
 var maxStep = 0.05;
 
@@ -413,6 +422,10 @@ Level.prototype.playerTouched = function(type, actor) {
       this.finishDelay = 1;
     }
   }
+  //uncomment to make code work.
+  /*if (type == "ice" && this.status == null) {
+	  this.speed = this.speed.times(-1);
+  }*/
 };
 
 // Arrow key codes for readibility
